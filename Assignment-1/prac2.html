@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Basic Calculator</h1>
+    <br>
+    <div id="input1" style="font-size: large;">Enter first number :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" id="num1" placeholder="Input value-1" style="height:20px" required></div>
+    <br>
+    <br>
+    <div id="input2" style="font-size: large;">Enter second number :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" id="num2" placeholder="Input value-2" style="height: 20px;" onblur="calc()" required></div>
+    <br>
+    <br>
+    <div id="result" style="font-size: large; font-weight: 1000;">
+    <span id="res"> </span></div>
+    <br>
+</body>
+<script>
+    function calc()
+    {
+        let n1 = document.getElementById("num1").value;
+        let n2 = document.getElementById("num2").value;
+        if(isNaN(n1) || isNaN(n2))
+        {
+            text = "*Please enter a valid input!"
+            document.getElementById("res").innerHTML = text;
+        }
+        else{
+            let sum = parseFloat(n1) + parseFloat(n2)
+            let diff = n1 - n2
+            let product = n1 * n2
+            let division = n1 / n2
+            let ans = "Sum :   " + sum + "   Difference :   " + diff + "   Product :   " + product + "   Division : " + division
+            document.getElementById("res").innerHTML = ans
+        }
+    }
+</script>
+</html>
