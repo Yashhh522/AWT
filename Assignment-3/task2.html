@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table
+        {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th,td
+        {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        tr:hover 
+        {
+            background-color: #f5f5f5;
+        }
+        .remove-btn 
+        {
+            background-color: blue;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .remove-btn:hover 
+        {
+            background-color: #da190b;
+        }
+        .container 
+        {
+            margin-bottom: 20px;
+        }
+        .container input 
+        {
+            margin-right: 10px;
+        }
+        .pagination 
+        {
+            margin-top: 10px;
+        }
+        .pagination button 
+        {
+            background-color: black;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+        .pagination button.active 
+        {
+            background-color: #008CBA;
+        }
+        .pagination button:hover:not(.active) 
+        {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="ID">ID : </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="ID" name="ID" required><br><br>
+        <label for="name">Name : </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="result">Result : </label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+        <input type="text" id="result" name="result" required><br><br>
+        <label for="contact">Contact Number : </label>
+        <input type="text" id="contact" name="contact" required><br><br>
+        <button onclick="addData()">Add</button>
+        <hr>
+    </div>
+
+    <table id="table">
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Result</th>
+            <th>Contact</th>
+            <th>Action</th>
+        </tr>
+    </table>
+    <div class="pagination">
+        <button onclick="previousPage()">Previous</button>
+        <button onclick="nextPage()">Next</button>
+    </div>
+    <script>
+        var data = [
+            ["21CE034","Yash","9.7","9687968177"],
+            ["21CE018","Mamta","9.5", "9687968166"],
+            ["21CE043","Ayush","8.7","9687968133"],
+            ["21CE100","Manav","9.0","9687968155"],
+            ["21CE130","Omshree","8.5","9824247700"],
+            ["21CE030","Shlok","9.6","9826263300"],
+            ["21CE069","Bhavya","8.8","9827276600"],
+        ];
+        var currPage = 1;
+        var dataPerPage = 3;
+        var pages = Math.ceil(data.length / dataPerPage);
+        function display() 
+        {
+            var startIndex = (currPage - 1) * dataPerPage;
+            var endIndex = startIndex + dataPerPage;
+            var displayInfo = data.slice(startIndex,endIndex);
+            var table = document.getElementById("table");
+            table.innerHTML = "<tr><th>Student ID</th>" +
+                              "<th>Name</th>" +
+                              "<th>Result</th>" +
+                              "<th>Phone Number</th>" +
+                              "<th> </th></tr>";
+            for (var i=0;i<displayInfo.length;i++) 
+            {
+                var row = table.insertRow(-1);
+                var studentIdCell = row.insertCell(0);
+                var nameCell = row.insertCell(1);
+                var resultCell = row.insertCell(2);
+                var phoneNumberCell = row.insertCell(3);
+                var actionCell = row.insertCell(4);
+                studentIdCell.innerHTML = displayInfo[i][0];
+                nameCell.innerHTML = displayInfo[i][1];
+                resultCell.innerHTML = displayInfo[i][2];
+                phoneNumberCell.innerHTML = displayInfo[i][3];
+                actionCell.innerHTML = "<button class='remove-btn' onclick='removeRow(" + (startIndex + i) + ")'>Remove</button>";
+            }
+        }
+        function removeRow(index) 
+        {
+            data.splice(index, 1);
+            updatePagination();
+            display();
+        }
+        function addData() 
+        {
+            var addID = document.getElementById("ID");
+            var addName = document.getElementById("name");
+            var addResult = document.getElementById("result");
+            var addContact = document.getElementById("contact");
+            var id = addID.value.trim();
+            var name = addName.value.trim();
+            var result = addResult.value.trim();
+            var contact = addContact.value.trim();
+            if (id && name && result && contact) 
+            {
+                data.push([id,name,result,contact]);
+                updatePagination();
+                display();
+                addID.value = " ";
+                addName.value = " ";
+                addResult.value = " ";
+                addContact.value = " ";
+            }
+        }
+        function previousPage() 
+        {
+            if (currPage>1)
+            {
+                currPage--;
+                display();
+            }
+        }
+        function nextPage()
+        {
+            if (currPage<pages) 
+            {
+                currPage++;
+                display();
+            }
+        }
+        function updatePagination() 
+        {
+            pages = Math.ceil(data.length/dataPerPage);
+            if (currPage>pages) 
+            {
+                currPage = pages;
+            }
+        }
+        display();
+    </script>
+</body>
+</html>
