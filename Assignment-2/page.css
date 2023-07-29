@@ -1,0 +1,15 @@
+#head{
+    text-align: center;
+}
+#signup{
+    text-align: center;
+}
+input[type="checkbox"]
+{
+    cursor: pointer;
+}
+input[type="button"]
+{
+    cursor: pointer;
+    padding: 6px;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="page.css">
+    <title>Sign-In</title>
+</head>
+<body>
+    <h1 id="head">Create your Social-Media account</h1>
+    <br>
+    <form id="signup">
+        <div>
+            <label for="name">Full Name : </label>
+            <input type="text" id="name" placeholder="Name">
+        </div>
+        <br>
+        <div>
+            <label for="uname">User Name : </label>
+            <input type="text" pattern="[A-Za-z0-9]" id="uname" placeholder="Username">
+        </div>
+        <br>
+        <div>
+            <label for="pass">Password : </label>
+            <input type="password" id="pass" placeholder="Password">
+        </div>
+        <br>
+        <div>
+            <label for="confirmpass">Confirm Password : </label>
+            <input type="password" id="confirmpass" placeholder="Password">
+        </div>
+        <br>
+        <div>
+             Gender :
+            <input type="radio" id="male" name="gender">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender">
+            <label for="female">Female</label>
+        </div>
+        <br>
+        <div>
+            <label for="contact">Contact Number : </label>
+            <input type="tel" id="contact" placeholder="Contact">
+        </div>
+        <br>
+        <div>
+            <label for="email">Email : </label>
+            <input type="text" id="mail" placeholder="Email-Id">
+        </div>
+        <br>
+        <div>
+            <label for="state">State : </label>
+            <select id="state">
+                <option value="State">--Select your state--</option>
+                <option>Gujarat</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Himachal Pradesh</option>
+            </select>
+        </div>
+        <br><br>
+        <div>
+            <input type="checkbox" id="agree" name="agreement" required>
+            <label for="agreement">I agree to all the terms and conditions</label>
+        </div>
+        <br><br>
+        <div id="btn">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <script src="page.js"></script>
+</body>
+</html>
