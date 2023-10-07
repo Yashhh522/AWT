@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload and Retrieval</title>
+</head>
+<body>
+  <h1>File Upload and Retrieval</h1>
+
+  <h2>Upload Image</h2>
+  <form action="/uploadImage" method="post" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required>
+    <br><br>
+    <input type="submit" value="Upload Image">
+  </form>
+
+  <h2>Upload Bulk Images</h2>
+  <form action="/uploadBulkImage" method="post" enctype="multipart/form-data">
+    <input type="file" name="images" accept="image/*" multiple required>
+    <br><br>
+    <input type="submit" value="Upload Bulk Images">
+  </form>
+
+  <h2>Upload Video</h2>
+  <form action="/uploadVideo" method="post" enctype="multipart/form-data">
+    <input type="file" name="video" accept="video/*" required>
+    <br><br>
+    <input type="submit" value="Upload Video">
+  </form>
+  <br><br>
+  <h2>Get Uploaded Images</h2>
+  <button onclick="getImages()">Get Images</button>
+  <p id="imagesList"></p>
+
+  <h2>Get Uploaded Videos</h2>
+  <button onclick="getVideos()">Get Videos</button>
+  <p id="videosList"></p>
+
+  <script>
+    async function getImages() {
+      const response = await fetch('/getImages');
+      const data = await response.json();
+      document.getElementById('imagesList').innerText = data.join(', ');
+    }
+
+    async function getVideos() {
+      const response = await fetch('/getVideos');
+      const data = await response.json();
+      document.getElementById('videosList').innerText = data.join(', ');
+    }
+  </script>
+</body>
+</html>
